@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="docker-simple, 易言鱼">
+    <meta name="keywords" content="单例设计模式, 易言鱼">
     <meta name="description" content="不以物喜，不以己悲">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>docker-simple | 易言鱼</title>
+    <title>单例设计模式 | 易言鱼</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/docker/docker.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/design/7/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">docker-simple</h1>
+                    <h1 class="description center-align post-title">单例设计模式</h1>
                 </div>
             </div>
         </div>
@@ -438,12 +438,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/init/">
-                                <span class="chip bg-color">init</span>
-                            </a>
-                        
-                            <a href="/tags/simple-syntax/">
-                                <span class="chip bg-color">simple syntax</span>
+                            <a href="/tags/%E5%8D%95%E4%BE%8B/">
+                                <span class="chip bg-color">单例</span>
                             </a>
                         
                     </div>
@@ -454,8 +450,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/docker/" class="post-category">
-                                docker
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                设计模式
                             </a>
                         
                     </div>
@@ -483,47 +479,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、环境配置"><a href="#一、环境配置" class="headerlink" title="一、环境配置"></a>一、环境配置</h1><pre class=" language-shell"><code class="language-shell">1、检查内核版本，必须是3.10及以上 uname ‐r 
-2、安装docker yum install docker
-3、输入y确认安装
-4、启动docker [root@localhost ~]# systemctl start docker 
-              [root@localhost ~]# docker ‐v 
-               Docker version 1.12.6, build 3e8e77d/1.12.6
-5、开机启动docker [root@localhost ~]# systemctl enable docker 
-                 Created symlink from /etc/systemd/system/multi‐user.target.wants/docker.service to /usr/lib/systemd/system/docker.service. 
-6、停止docker systemctl stop docker</code></pre>
-<p><img src="/images/docker/aliyun-docker.png" alt=""></p>
-<h2 id="Docker常用命令-amp-操作"><a href="#Docker常用命令-amp-操作" class="headerlink" title="Docker常用命令&amp;操作"></a>Docker常用命令&amp;操作</h2><p><img src="/images/docker/simple.png" alt=""></p>
-<h2 id="操作指令"><a href="#操作指令" class="headerlink" title="操作指令"></a>操作指令</h2><pre class=" language-shell"><code class="language-shell">1.搜索镜像
- docker search tomcat
- 2.拉取镜像
- docker pull tomcat
- 3.根据镜像启动容器
- docker run --name mytomcat -d tomcat:latest
- 4.查看运行中的容器
- docker ps
- 5.停止运行中的容器
- docker stop 容器id
- 6.查看所有的容器
- docker ps -a
- 7.启动容器
- docker start 容器id
- 8.删除一个容器
- docker rm 容器id
- 9.启动一个做了端口映射的tomcat
- docker run -d -p 8888:8080 tomcat
- 10.查看容器的日志
- docker logs 容器id/容器名字
- 11.容器挂载
- docker run --name mysql -v /conf/mysql:/etc/mysql mysql
- 12.进入容器
- docker exec -it 容器id bash</code></pre>
-<h2 id="迁移与备份"><a href="#迁移与备份" class="headerlink" title="迁移与备份"></a>迁移与备份</h2><pre class=" language-shell"><code class="language-shell">1.容器保存为镜像
-docker commit 现有容器id/容器名字 保存的镜像名字
-2.镜像备份
-docker save -o 保存的名字.tar 要保存的镜像
-3.镜像恢复与迁移
-docker load -i 要恢复的文件.tar</code></pre>
+                <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
+<p>这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p>
+<p><strong>注意：</strong></p>
+<p>1、单例类只能有一个实例。</p>
+<p>2、单例类必须自己创建自己的唯一实例。</p>
+<p>3、单例类必须给所有其他对象提供这一实例。</p>
+<p><strong>优点：</strong></p>
+<p>1、在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例</p>
+<p>2、避免对资源的多重占用（比如写文件操作）。</p>
+<p><strong>缺点：</strong></p>
+<p> 1、没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。</p>
+<hr>
+<h2 id="饿汉式（静态常量-静态代码块）"><a href="#饿汉式（静态常量-静态代码块）" class="headerlink" title="饿汉式（静态常量/静态代码块）"></a>饿汉式（静态常量/静态代码块）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>
+
+   <span class="token comment" spellcheck="true">//创建 Single 的一个对象</span>
+   <span class="token keyword">private</span> <span class="token keyword">static</span> Singleton instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true">//让构造函数为 private，这样该类就不会被实例化</span>
+   <span class="token keyword">private</span> <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+   <span class="token comment" spellcheck="true">//获取唯一可用的对象</span>
+   <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
+<p><strong>优点：</strong>比较简单，在类装载时完成实例化，避免了线程同步问题</p>
+<p><strong>缺点：</strong>在类装载时完成初始化，没有达到 Lazy Loading 的效果，可能造成内存浪费</p>
+<hr>
+<h2 id="懒汉式（同步方法-不推荐）"><a href="#懒汉式（同步方法-不推荐）" class="headerlink" title="懒汉式（同步方法/不推荐）"></a>懒汉式（同步方法/不推荐）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>  
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> Singleton instance<span class="token punctuation">;</span>  
+
+    <span class="token keyword">private</span> <span class="token function">Singleton</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">synchronized</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+       <span class="token keyword">if</span> <span class="token punctuation">(</span>instance <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+          instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+       <span class="token punctuation">}</span>  
+       <span class="token keyword">return</span> instance<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span></code></pre>
+<p><strong>优点：</strong>解决了传统懒汉式的线程问题</p>
+<p><strong>缺点：</strong>同步方法效率低下</p>
+<hr>
+<h2 id="双重检测（推荐）"><a href="#双重检测（推荐）" class="headerlink" title="双重检测（推荐）"></a>双重检测（推荐）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>  
+
+    <span class="token keyword">private</span> <span class="token keyword">volatile</span> <span class="token keyword">static</span> Singleton singleton<span class="token punctuation">;</span>  
+
+    <span class="token keyword">private</span> <span class="token function">Singleton</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton <span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+       <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+           <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>Singleton<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+               <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                   singleton <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+               <span class="token punctuation">}</span>  
+           <span class="token punctuation">}</span>  
+       <span class="token punctuation">}</span>  
+       <span class="token keyword">return</span> singleton<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span></code></pre>
+<p><strong>优点：</strong>线程安全，延迟加载，效率较高</p>
+<hr>
+<h2 id="静态内部类（推荐）"><a href="#静态内部类（推荐）" class="headerlink" title="静态内部类（推荐）"></a>静态内部类（推荐）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>  
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">SingletonHolder</span> <span class="token punctuation">{</span> 
+        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Singleton INSTANCE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+
+    <span class="token keyword">private</span> <span class="token function">Singleton</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+       <span class="token keyword">return</span> SingletonHolder<span class="token punctuation">.</span>INSTANCE<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span></code></pre>
+<p><strong>优点：</strong>利用classloader机制来保证初始化instance时只有一个线程，Singleton类被装载时，SingletonHolder类没有被主动使用，即 Lazy Loading</p>
+<hr>
+<h2 id="枚举（推荐）"><a href="#枚举（推荐）" class="headerlink" title="枚举（推荐）"></a>枚举（推荐）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> Singleton <span class="token punctuation">{</span>
+
+    INSTANCE<span class="token punctuation">;</span>  
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">whateverMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span></code></pre>
+<p>优点：线程安全，防止反序列化</p>
 
             </div>
             <hr/>
@@ -549,7 +590,7 @@ docker load -i 要恢复的文件.tar</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.chencong98.com/2020/04/30/docker/">http://www.chencong98.com/2020/04/30/docker/</a>
+                    <a href="http://www.chencong98.com/2020/04/30/dan-li-mo-shi/">http://www.chencong98.com/2020/04/30/dan-li-mo-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -587,12 +628,8 @@ docker load -i 要恢复的文件.tar</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/init/">
-                                    <span class="chip bg-color">init</span>
-                                </a>
-                            
-                                <a href="/tags/simple-syntax/">
-                                    <span class="chip bg-color">simple syntax</span>
+                                <a href="/tags/%E5%8D%95%E4%BE%8B/">
+                                    <span class="chip bg-color">单例</span>
                                 </a>
                             
                         </div>
@@ -760,9 +797,59 @@ docker load -i 要恢复的文件.tar</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/04/30/dan-li-mo-shi/">
+                    <div class="card-image">
+                        
+                        <img src="/images/design/7/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.png" class="responsive-img" alt="单例设计模式">
+                        
+                        <span class="card-title">单例设计模式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            保证一个类仅有一个实例，并提供一个访问它的全局访问点
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8D%95%E4%BE%8B/">
+                        <span class="chip bg-color">单例</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/04/30/she-ji-mo-shi-7-da-yuan-ze/">
                     <div class="card-image">
@@ -779,9 +866,9 @@ docker load -i 要恢复的文件.tar</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -799,59 +886,6 @@ docker load -i 要恢复的文件.tar</code></pre>
                     
                     <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">
                         <span class="chip bg-color">设计模式七大原则</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/28/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/java/" class="post-category">
-                                    java
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/init/">
-                        <span class="chip bg-color">init</span>
-                    </a>
-                    
-                    <a href="/tags/simple-syntax/">
-                        <span class="chip bg-color">simple syntax</span>
                     </a>
                     
                 </div>
