@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="单例设计模式, 易言鱼">
+    <meta name="keywords" content="抽象工厂模式, 易言鱼">
     <meta name="description" content="不以物喜，不以己悲">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>单例设计模式 | 易言鱼</title>
+    <title>抽象工厂模式 | 易言鱼</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/design/7/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/design/simpleFactory/simpleFactory-simple.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">单例设计模式</h1>
+                    <h1 class="description center-align post-title">抽象工厂模式</h1>
                 </div>
             </div>
         </div>
@@ -463,7 +463,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-30
+                    2020-05-02
                 </div>
                 
 
@@ -472,14 +472,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    588
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -494,92 +494,165 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
-<p>这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p>
-<p><strong>注意：</strong></p>
-<p>1、单例类只能有一个实例。</p>
-<p>2、单例类必须自己创建自己的唯一实例。</p>
-<p>3、单例类必须给所有其他对象提供这一实例。</p>
-<p><strong>优点：</strong></p>
-<p>1、在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例</p>
-<p>2、避免对资源的多重占用（比如写文件操作）。</p>
-<p><strong>缺点：</strong></p>
-<p> 1、没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。</p>
-<hr>
-<h2 id="饿汉式（静态常量-静态代码块）"><a href="#饿汉式（静态常量-静态代码块）" class="headerlink" title="饿汉式（静态常量/静态代码块）"></a>饿汉式（静态常量/静态代码块）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>
-
-   <span class="token comment" spellcheck="true">//创建 Single 的一个对象</span>
-   <span class="token keyword">private</span> <span class="token keyword">static</span> Singleton instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token comment" spellcheck="true">//让构造函数为 private，这样该类就不会被实例化</span>
-   <span class="token keyword">private</span> <span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-   <span class="token comment" spellcheck="true">//获取唯一可用的对象</span>
-   <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
-   <span class="token punctuation">}</span>
-
+                <h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><p>抽象工厂模式（Abstract Factory Pattern）是围绕一个超级工厂创建其他工厂。该超级工厂又称为其他工厂的工厂。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
+<p>在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定它们的类。每个生成的工厂都能按照工厂模式提供对象。</p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>我们将创建 <em>Shape</em> 和 <em>Color</em> 接口和实现这些接口的实体类。下一步是创建抽象工厂类 <em>AbstractFactory*。接着定义工厂类 *ShapeFactory</em> 和 <em>ColorFactory</em>，这两个工厂类都是扩展了 <em>AbstractFactory</em>。然后创建一个工厂创造器/生成器类 <em>FactoryProducer</em>。</p>
+<p><em>AbstractFactoryPatternDemo*，我们的演示类使用 *FactoryProducer</em> 来获取 <em>AbstractFactory</em> 对象。它将向 <em>AbstractFactory</em> 传递形状信息 <em>Shape<em>（</em>CIRCLE / RECTANGLE / SQUARE*），以便获取它所需对象的类型。同时它还向 *AbstractFactory</em> 传递颜色信息 <em>Color</em>（<em>RED / GREEN / BLUE</em>），以便获取它所需对象的类型。</p>
+<p><img src="/images/design/simpleFactory/simpleFactory.png" alt=""></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤 1"></a>步骤 1</h3><p>为形状创建一个接口。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Shape</span> <span class="token punctuation">{</span> 
+   <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 <span class="token punctuation">}</span></code></pre>
-<p><strong>优点：</strong>比较简单，在类装载时完成实例化，避免了线程同步问题</p>
-<p><strong>缺点：</strong>在类装载时完成初始化，没有达到 Lazy Loading 的效果，可能造成内存浪费</p>
-<hr>
-<h2 id="懒汉式（同步方法-不推荐）"><a href="#懒汉式（同步方法-不推荐）" class="headerlink" title="懒汉式（同步方法/不推荐）"></a>懒汉式（同步方法/不推荐）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>  
-
-    <span class="token keyword">private</span> <span class="token keyword">static</span> Singleton instance<span class="token punctuation">;</span>  
-
-    <span class="token keyword">private</span> <span class="token function">Singleton</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">synchronized</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-       <span class="token keyword">if</span> <span class="token punctuation">(</span>instance <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-          instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-       <span class="token punctuation">}</span>  
-       <span class="token keyword">return</span> instance<span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span>  
+<h3 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤 2"></a>步骤 2</h3><p>创建实现接口的实体类。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Rectangle</span> <span class="token keyword">implements</span> <span class="token class-name">Shape</span> <span class="token punctuation">{</span>  
+    <span class="token annotation punctuation">@Override</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>     
+       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Inside Rectangle::draw() method."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+    <span class="token punctuation">}</span> 
 <span class="token punctuation">}</span></code></pre>
-<p><strong>优点：</strong>解决了传统懒汉式的线程问题</p>
-<p><strong>缺点：</strong>同步方法效率低下</p>
-<hr>
-<h2 id="双重检测（推荐）"><a href="#双重检测（推荐）" class="headerlink" title="双重检测（推荐）"></a>双重检测（推荐）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>  
-
-    <span class="token keyword">private</span> <span class="token keyword">volatile</span> <span class="token keyword">static</span> Singleton singleton<span class="token punctuation">;</span>  
-
-    <span class="token keyword">private</span> <span class="token function">Singleton</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton <span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-       <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-           <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>Singleton<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-               <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-                   singleton <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-               <span class="token punctuation">}</span>  
-           <span class="token punctuation">}</span>  
-       <span class="token punctuation">}</span>  
-       <span class="token keyword">return</span> singleton<span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span>  
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Square</span> <span class="token keyword">implements</span> <span class="token class-name">Shape</span> <span class="token punctuation">{</span>   
+    <span class="token annotation punctuation">@Override</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Inside Square::draw() method."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span> 
 <span class="token punctuation">}</span></code></pre>
-<p><strong>优点：</strong>线程安全，延迟加载，效率较高</p>
-<hr>
-<h2 id="静态内部类（推荐）"><a href="#静态内部类（推荐）" class="headerlink" title="静态内部类（推荐）"></a>静态内部类（推荐）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>  
-
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">SingletonHolder</span> <span class="token punctuation">{</span> 
-        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Singleton INSTANCE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span>  
-
-    <span class="token keyword">private</span> <span class="token function">Singleton</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-       <span class="token keyword">return</span> SingletonHolder<span class="token punctuation">.</span>INSTANCE<span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span>  
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Circle</span> <span class="token keyword">implements</span> <span class="token class-name">Shape</span> <span class="token punctuation">{</span>    
+    <span class="token annotation punctuation">@Override</span>   
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>      
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Inside Circle::draw() method."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+    <span class="token punctuation">}</span> 
 <span class="token punctuation">}</span></code></pre>
-<p><strong>优点：</strong>利用classloader机制来保证初始化instance时只有一个线程，Singleton类被装载时，SingletonHolder类没有被主动使用，即 Lazy Loading</p>
-<hr>
-<h2 id="枚举（推荐）"><a href="#枚举（推荐）" class="headerlink" title="枚举（推荐）"></a>枚举（推荐）</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> Singleton <span class="token punctuation">{</span>
-
-    INSTANCE<span class="token punctuation">;</span>  
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">whateverMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-    <span class="token punctuation">}</span>  
+<h3 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤 3"></a>步骤 3</h3><p>为颜色创建一个接口。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Color</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">void</span> <span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p>优点：线程安全，防止反序列化</p>
+<h3 id="步骤4"><a href="#步骤4" class="headerlink" title="步骤4"></a>步骤4</h3><p>创建实现接口的实体类。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Red</span> <span class="token keyword">implements</span> <span class="token class-name">Color</span> <span class="token punctuation">{</span>    
+    <span class="token annotation punctuation">@Override</span>    
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>     
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Inside Red::fill() method."</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Green</span> <span class="token keyword">implements</span> <span class="token class-name">Color</span> <span class="token punctuation">{</span>     
+    <span class="token annotation punctuation">@Override</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>      
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Inside Green::fill() method."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Blue</span> <span class="token keyword">implements</span> <span class="token class-name">Color</span> <span class="token punctuation">{</span>    
+    <span class="token annotation punctuation">@Override</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>   
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Inside Blue::fill() method."</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<h3 id="步骤-5"><a href="#步骤-5" class="headerlink" title="步骤 5"></a>步骤 5</h3><p>为 Color 和 Shape 对象创建抽象类来获取工厂。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractFactory</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> Color <span class="token function">getColor</span><span class="token punctuation">(</span>String color<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> Shape <span class="token function">getShape</span><span class="token punctuation">(</span>String shape<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="步骤-6"><a href="#步骤-6" class="headerlink" title="步骤 6"></a>步骤 6</h3><p>创建扩展了 AbstractFactory 的工厂类，基于给定的信息生成实体类的对象。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShapeFactory</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractFactory</span> <span class="token punctuation">{</span>    
+
+    <span class="token annotation punctuation">@Override</span> 
+    <span class="token keyword">public</span> Shape <span class="token function">getShape</span><span class="token punctuation">(</span>String shapeType<span class="token punctuation">)</span><span class="token punctuation">{</span>    
+        <span class="token keyword">if</span><span class="token punctuation">(</span>shapeType <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>     
+           <span class="token keyword">return</span> null<span class="token punctuation">;</span>    
+        <span class="token punctuation">}</span>             
+        <span class="token keyword">if</span><span class="token punctuation">(</span>shapeType<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"CIRCLE"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Circle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>shapeType<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"RECTANGLE"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>     
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Rectangle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>shapeType<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"SQUARE"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>         
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Square</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+        <span class="token punctuation">}</span>      
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>
+
+
+    <span class="token annotation punctuation">@Override</span> 
+    <span class="token keyword">public</span> Color <span class="token function">getColor</span><span class="token punctuation">(</span>String color<span class="token punctuation">)</span> <span class="token punctuation">{</span>   
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>   
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ColorFactory</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractFactory</span> <span class="token punctuation">{</span>  
+
+    <span class="token annotation punctuation">@Override</span>   
+    <span class="token keyword">public</span> Shape <span class="token function">getShape</span><span class="token punctuation">(</span>String shapeType<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>    
+
+    <span class="token annotation punctuation">@Override</span>  
+    <span class="token keyword">public</span> Color <span class="token function">getColor</span><span class="token punctuation">(</span>String color<span class="token punctuation">)</span> <span class="token punctuation">{</span>     
+        <span class="token keyword">if</span><span class="token punctuation">(</span>color <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>   
+                <span class="token keyword">return</span> null<span class="token punctuation">;</span>    
+        <span class="token punctuation">}</span>              
+        <span class="token keyword">if</span><span class="token punctuation">(</span>color<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"RED"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>     
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Red</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>color<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"GREEN"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>       
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Green</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>color<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"BLUE"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Blue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+        <span class="token punctuation">}</span>     
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<h3 id="步骤-7"><a href="#步骤-7" class="headerlink" title="步骤 7"></a>步骤 7</h3><p>创建一个工厂创造器/生成器类，通过传递形状或颜色信息来获取工厂。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FactoryProducer</span> <span class="token punctuation">{</span>  
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> AbstractFactory <span class="token function">getFactory</span><span class="token punctuation">(</span>String choice<span class="token punctuation">)</span><span class="token punctuation">{</span>      
+        <span class="token keyword">if</span><span class="token punctuation">(</span>choice<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"SHAPE"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>     
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ShapeFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>choice<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"COLOR"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>      
+                <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ColorFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+        <span class="token punctuation">}</span>      
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="步骤-8"><a href="#步骤-8" class="headerlink" title="步骤 8"></a>步骤 8</h3><p>使用 FactoryProducer 来获取 AbstractFactory，通过传递类型信息来获取实体类的对象。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AbstractFactoryPatternDemo</span> <span class="token punctuation">{</span>   
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>    
+        <span class="token comment" spellcheck="true">//获取形状工厂     </span>
+        AbstractFactory shapeFactory <span class="token operator">=</span> FactoryProducer<span class="token punctuation">.</span><span class="token function">getFactory</span><span class="token punctuation">(</span><span class="token string">"SHAPE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token comment" spellcheck="true">//获取形状为 Circle 的对象    </span>
+        Shape shape1 <span class="token operator">=</span> shapeFactory<span class="token punctuation">.</span><span class="token function">getShape</span><span class="token punctuation">(</span><span class="token string">"CIRCLE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+        <span class="token comment" spellcheck="true">//调用 Circle 的 draw 方法     </span>
+        shape1<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
+        <span class="token comment" spellcheck="true">//获取形状为 Rectangle 的对象     </span>
+        Shape shape2 <span class="token operator">=</span> shapeFactory<span class="token punctuation">.</span><span class="token function">getShape</span><span class="token punctuation">(</span><span class="token string">"RECTANGLE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+        <span class="token comment" spellcheck="true">//调用 Rectangle 的 draw 方法    </span>
+        shape2<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            
+        <span class="token comment" spellcheck="true">//获取形状为 Square 的对象     </span>
+        Shape shape3 <span class="token operator">=</span> shapeFactory<span class="token punctuation">.</span><span class="token function">getShape</span><span class="token punctuation">(</span><span class="token string">"SQUARE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+        <span class="token comment" spellcheck="true">//调用 Square 的 draw 方法     </span>
+        shape3<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
+        <span class="token comment" spellcheck="true">//获取颜色工厂     </span>
+        AbstractFactory colorFactory <span class="token operator">=</span> FactoryProducer<span class="token punctuation">.</span><span class="token function">getFactory</span><span class="token punctuation">(</span><span class="token string">"COLOR"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token comment" spellcheck="true">//获取颜色为 Red 的对象   </span>
+        Color color1 <span class="token operator">=</span> colorFactory<span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">"RED"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+        <span class="token comment" spellcheck="true">//调用 Red 的 fill 方法    </span>
+        color1<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      
+        <span class="token comment" spellcheck="true">//获取颜色为 Green 的对象    </span>
+        Color color2 <span class="token operator">=</span> colorFactory<span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">"Green"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+        <span class="token comment" spellcheck="true">//调用 Green 的 fill 方法    </span>
+        color2<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
+        <span class="token comment" spellcheck="true">//获取颜色为 Blue 的对象     </span>
+        Color color3 <span class="token operator">=</span> colorFactory<span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">"BLUE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token comment" spellcheck="true">//调用 Blue 的 fill 方法  </span>
+        color3<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<h3 id="步骤-9"><a href="#步骤-9" class="headerlink" title="步骤 9"></a>步骤 9</h3><p>执行程序，输出结果：</p>
+<pre class=" language-java"><code class="language-java">Inside Circle<span class="token operator">:</span><span class="token operator">:</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> method<span class="token punctuation">.</span>
+Inside Rectangle<span class="token operator">:</span><span class="token operator">:</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> method<span class="token punctuation">.</span>
+Inside Square<span class="token operator">:</span><span class="token operator">:</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> method<span class="token punctuation">.</span>
+Inside Red<span class="token operator">:</span><span class="token operator">:</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span> method<span class="token punctuation">.</span>
+Inside Green<span class="token operator">:</span><span class="token operator">:</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span> method<span class="token punctuation">.</span>
+Inside Blue<span class="token operator">:</span><span class="token operator">:</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span> method<span class="token punctuation">.</span></code></pre>
+<hr>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p><strong>优点：</strong>当一个产品族中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品族中的对象。</p>
+<p><strong>缺点：</strong>产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的 Creator 里加代码，又要在具体的里面加代码。</p>
+<p><strong>使用场景：</strong> 1、QQ 换皮肤，一整套一起换。 2、生成不同操作系统的程序。</p>
 
             </div>
             <hr/>
@@ -605,7 +678,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.chencong98.com/2020/04/30/dan-li-mo-shi/">http://www.chencong98.com/2020/04/30/dan-li-mo-shi/</a>
+                    <a href="http://www.chencong98.com/2020/05/02/chou-xiang-gong-han-mo-shi/">http://www.chencong98.com/2020/05/02/chou-xiang-gong-han-mo-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -812,45 +885,47 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/02/chang-jian-ssr-window-jiao-cheng/">
+                <a href="/2020/05/02/chou-xiang-gong-han-mo-shi/">
                     <div class="card-image">
                         
-                        <img src="/images/ssr/airplane.jpg" class="responsive-img" alt="ssr - window 教程">
+                        <img src="/images/design/simpleFactory/simpleFactory-simple.png" class="responsive-img" alt="抽象工厂模式">
                         
-                        <span class="card-title">ssr - window 教程</span>
+                        <span class="card-title">抽象工厂模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            通过ssr可以实现对国外网站的浏览，例如：YouTube，wiki ，StackOverFlow ... 当然，也可以玩国外软件（外服lol，facebook，twitter）
+                            提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ssr/" class="post-category">
-                                    ssr
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ssr-window/">
-                        <span class="chip bg-color">ssr-window</span>
+                    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">创建型模式</span>
                     </a>
                     
                 </div>
@@ -864,23 +939,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/30/she-ji-mo-shi-7-da-yuan-ze/">
+                <a href="/2020/05/02/gong-han-mo-shi/">
                     <div class="card-image">
                         
-                        <img src="/images/design/7/design7.jpg" class="responsive-img" alt="设计模式7大原则">
+                        <img src="/images/design/factory/factory-simple.png" class="responsive-img" alt="工厂模式">
                         
-                        <span class="card-title">设计模式7大原则</span>
+                        <span class="card-title">工厂模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的；设计模式使代码编制真正工程化；设计模式是软件工程的基石脉络，如同大厦的结构一样。
+                            定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-02
                             </span>
                         <span class="publish-author">
                             
@@ -897,8 +972,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">
-                        <span class="chip bg-color">设计模式七大原则</span>
+                    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">创建型模式</span>
                     </a>
                     
                 </div>
