@@ -4,6 +4,75 @@
   
     
     <entry>
+      <title>shell概览</title>
+      <link href="/2020/05/06/shell-gai-lan/"/>
+      <url>/2020/05/06/shell-gai-lan/</url>
+      
+        <content type="html"><![CDATA[<h1 id="shell概览"><a href="#shell概览" class="headerlink" title="shell概览"></a>shell概览</h1><p><strong>shell 的两层含义：</strong><br>     既是一种应用程序,又是一种程序设计语言<br><strong>作为应用程序：</strong><br>      交互式地解释、执行用户输入的命令，将用户的操作翻译成机器可以识别的语言，完成相应功能<br><code>称之为 shell 命令解析器</code><br><code>shell 是用户和 Linux 内核之间的接口程序</code><br>用户在提示符下输入的命令都由 shell 先解释然后传给 Linux 核心<br>它调用了系统核心的大部分功能来执行程序、并以并行的方式协调各个程序的运行<br>Linux 系统中提供了好几种不同的 shell 命令解释器，如 sh、ash、bash 等。一般默认使用 bash 作为默认的解<br>释器。我们后面编写的 shell 脚本，都是由上述 shell 命令解释器解释执行的。<br><img src="/images/shell/shell_mode.png" alt=""><br>shell 是用户跟内核通信几种方式的一种<br><img src="/images/shell/shell_user.png" alt=""><br><code>作为程序设计语言：</code></p><p>它定义了各种变量和参数，并提供了许多在高级语言中才具有的控制结构，包括循环和分支<br>完成类似于 windows 下批处理操作，简化我们对系统的管理与应用程序的部署</p><p><strong><code>shell 脚本是一种脚本语言</code></strong>，我们只需使用任意文本编辑器，按照语法编写相应程序，增加可执行权限，即可在安<br>装 shell 命令解释器的环境下执行<br>shell 脚本主要用于：<br>帮助开发人员或系统管理员将复杂而又反复的操作放在一个文件中，通过简单的一步执行操作完成相应任务，从<br>而解放他们的负担</p><p><code>shell 脚本大体可以分为两类：</code><br><code>系统进行调用</code><br>这类脚本无需用户调用，系统会在合适的时候调用，如：/etc/profile、~/.bashrc 等</p><p>/etc/profile<br>       此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行，系统的公共环境变量在这里设置<br>        开始自启动的程序，一般也在这里设置<br>~/.bashrc<br>       用户自己的家目录中的.bashrc<br>       登录时会自动调用，打开任意终端时也会自动调用<br>       这个文件一般设置与个人用户有关的环境变量，如交叉编译器的路径等等</p><p><code>用户编写，需要手动调用的</code><br>例如我们上面编写的脚本都属于此类<br>无论是系统调用的还是需要我们自己调用的，其语法规则都一样</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> shell </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>jvm基础参数</title>
+      <link href="/2020/05/05/jvm-can-shu-zhi-nan/"/>
+      <url>/2020/05/05/jvm-can-shu-zhi-nan/</url>
+      
+        <content type="html"><![CDATA[<h1 id="jvm参数指南"><a href="#jvm参数指南" class="headerlink" title="jvm参数指南"></a>jvm参数指南</h1><p><code>详情参考：</code><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html</a></p><table><thead><tr><th>-Xms</th><th>初始化堆</th><th>默认占1/64</th></tr></thead><tbody><tr><td>-Xmx</td><td>最大堆</td><td>默认1/4</td></tr><tr><td>-Xmn</td><td>新生代最大可用</td><td>一般为1/3或1/4</td></tr><tr><td>-XX:NewRatio</td><td>老年代和新生代比例</td><td></td></tr><tr><td>-XX:SurvivorRatio</td><td>新生代中eden空间和from/to的比例</td><td></td></tr><tr><td>-Xss</td><td>单个线程栈</td><td>一般为512k-1024k</td></tr><tr><td>-XX:MetaspaceSize</td><td>元空间（本地内存）</td><td></td></tr><tr><td>-XX:MaxTenuringThreshold</td><td>垃圾最大年龄</td><td></td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> jvm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> jvm参数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>垃圾收集算法</title>
+      <link href="/2020/05/05/la-ji-shou-ji-suan-fa/"/>
+      <url>/2020/05/05/la-ji-shou-ji-suan-fa/</url>
+      
+        <content type="html"><![CDATA[<h1 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h1><h2 id="1、引用计数法"><a href="#1、引用计数法" class="headerlink" title="1、引用计数法"></a>1、引用计数法</h2><p>引用计数法实现简单，效率较高，在大部分情况下是一个不错的算法。其原理是：给对象添加一个引用计数器，每当有一个地方引用该对象时，计数器加1，当引用失效时，计数器减1，当计数器值为0时表示该对象不再被使用。需要注意的是：引用计数法很难解决对象之间相互循环引用的问题，主流Java虚拟机没有选用引用计数法来管理内存。</p><p><strong>优点</strong>：引用计数收集器可以很快的执行，交织在程序运行中。对程序需要不被长时间打断的实时环境比较有利。</p><p><strong>缺点</strong>：无法检测出循环引用。如父对象有一个对子对象的引用，子对象反过来引用父对象。这样，他们的引用计数永远不可能为0。</p><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">abc_test</span> <span class="token punctuation">{</span>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>        MyObject object1<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">MyObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        MyObject object2<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">MyObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        object1<span class="token punctuation">.</span>object<span class="token operator">=</span>object2<span class="token punctuation">;</span>        object2<span class="token punctuation">.</span>object<span class="token operator">=</span>object1<span class="token punctuation">;</span>             object1<span class="token operator">=</span>null<span class="token punctuation">;</span>        object2<span class="token operator">=</span>null<span class="token punctuation">;</span>            <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">class</span> <span class="token class-name">MyObject</span><span class="token punctuation">{</span>       MyObject object<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>这段代码是用来验证引用计数算法不能检测出循环引用。最后面两句将<code>object1</code>和<code>object2</code>赋值为<code>null</code>，也就是说<code>object1</code>和<code>object2</code>指向的对象已经不可能再被访问，但是由于它们互相引用对方，导致它们的引用计数器都不为0，那么垃圾收集器就永远不会回收它们</p><h2 id="2、标记-清除"><a href="#2、标记-清除" class="headerlink" title="2、标记-清除"></a>2、标记-清除</h2><p><img src="/images/JVM/garbage/%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4.png" alt=""></p><p>从图中可以很容易看出标记-清除算法实现起来比较容易，但是有一个比较严重的问题就是容易产生内存碎片，碎片太多可能会导致后续过程中需要为大对象分配空间时无法找到足够的空间而提前触发新的一次垃圾收集动作。  </p><p>标记-清除算法采用从根集合（GC Roots）进行扫描，对存活的对象进行标记，标记完毕后，再扫描整个空间中未被标记的对象，进行回收，如下图所示。标记-清除算法不需要进行对象的移动，只需对不存活的对象进行处理，在存活对象比较多的情况下极为高效，但由于标记-清除算法直接回收不存活的对象，因此会造成内存碎片。</p><h2 id="3、复制算法"><a href="#3、复制算法" class="headerlink" title="3、复制算法"></a>3、复制算法</h2><p>为了解决Mark-Sweep算法的缺陷，Copying算法就被提了出来。它将可用内存按容量划分为大小相等的两块，每次只使用其中的一块。当这一块的内存用完了，就将还存活着的对象复制到另外一块上面，然后再把已使用的内存空间一次清理掉，这样一来就不容易出现内存碎片的问题。具体过程如下图所示：</p><p><img src="/images/JVM/garbage/%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png" alt=""></p><p>这种算法虽然实现简单，运行高效且不容易产生内存碎片，但是却对内存空间的使用做出了高昂的代价，因为能够使用的内存缩减到原来的一半。</p><p>很显然，Copying算法的效率跟存活对象的数目多少有很大的关系，如果存活对象很多，那么Copying算法的效率将会大大降低。  </p><p>复制算法的提出是为了克服句柄的开销和解决内存碎片的问题。它开始时把堆分成 一个对象 面和多个空闲面， 程序从对象面为对象分配空间，当对象满了，基于copying算法的垃圾 收集就从根集合（GC Roots）中扫描活动对象，并将每个 活动对象复制到空闲面(使得活动对象所占的内存之间没有空闲洞)，这样空闲面变成了对象面，原来的对象面变成了空闲面，程序会在新的对象面中分配内存。</p><h2 id="4、标记-整理"><a href="#4、标记-整理" class="headerlink" title="4、标记-整理"></a>4、标记-整理</h2><p>为了解决Copying算法的缺陷，充分利用内存空间，提出了Mark-Compact算法。<strong>该算法标记阶段和Mark-Sweep一样，但是在完成标记之后，它不是直接清理可回收对象，而是将存活对象都向一端移动(美团面试题目，记住是完成标记之后，先不清理，先移动再清理回收对象)，然后清理掉端边界以外的内存(美团问过)</strong>   </p><p>标记-整理算法采用标记-清除算法一样的方式进行对象的标记，但在清除时不同，在回收不存活的对象占用的空间后，会将所有的存活对象往左端空闲空间移动，并更新对应的指针<strong>。标记-整理算法是在标记-清除算法的基础上，又进行了对象的移动</strong>，因此成本更高，但是却解决了内存碎片的问题。具体流程见下图：</p><p><img src="/images/JVM/garbage/%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86.png" alt=""></p><h2 id="5、分代收集算法"><a href="#5、分代收集算法" class="headerlink" title="5、分代收集算法"></a>5、分代收集算法</h2><p>分代收集算法是目前大部分JVM的垃圾收集器采用的算法。它的核心思想是根据对象存活的生命周期将内存划分为若干个不同的区域。一般情况下将堆区划分为老年代（Tenured Generation）和新生代（Young Generation），在堆区之外还有一个代就是永久代（Permanet Generation）。老年代的特点是每次垃圾收集时只有少量对象需要被回收，而新生代的特点是每次垃圾回收时都有大量的对象需要被回收，那么就可以根据不同代的特点采取最适合的收集算法。</p><p>目前大部分垃圾收集器对于<strong>新生代都采取Copying算法</strong>，因为新生代中每次垃圾回收都要回收大部分对象，也就是说需要复制的操作次数较少<strong>，但是实际中并不是按照1：1的比例来划分新生代的空间的，一般来说是将新生代划分为一块较大的Eden空间和两块较小的Survivor空间（一般为8:1:1），每次使用Eden空间和其中的一块Survivor空间，当进行回收时，将Eden和Survivor中还存活的对象复制到另一块Survivor空间中，然后清理掉Eden和刚才使用过的Survivor空间</strong>。</p><p>而由于<strong>老年代的特点是每次回收都只回收少量对象，一般使用的是Mark-Compact算法。</strong></p><p><img src="/images/JVM/garbage/%E5%88%86%E4%BB%A3%E7%AE%97%E6%B3%95.png" alt=""></p><p><img src="/images/JVM/garbage/java8JVM.png" alt=""></p><h3 id="5-1、新生代和老年代的区别-阿里面试官的题目-："><a href="#5-1、新生代和老年代的区别-阿里面试官的题目-：" class="headerlink" title="5.1、新生代和老年代的区别(阿里面试官的题目)："></a>5.1、新生代和老年代的区别(<strong>阿里面试官的题目</strong>)：</h3><p>所谓的新生代和老年代是针对于分代收集算法来定义的，新生代又分为Eden和Survivor两个区。加上老年代就这三个区。数据会首先分配到Eden区 当中（当然也有特殊情况，如果是大对象那么会直接放入到老年代（大对象是指需要大量连续内存空间的java对象）。），当Eden没有足够空间的时候就会 触发jvm发起一次Minor GC。如果对象经过一次Minor GC还存活，并且又能被Survivor空间接受，那么将被移动到Survivor空 间当中。并将其年龄设为1，对象在Survivor每熬过一次Minor GC，年龄就加1，当年龄达到一定的程度（默认为15）时，就会被晋升到老年代 中了，当然晋升老年代的年龄是可以设置的。如果老年代满了就执行：Full GC 因为不经常执行，因此采用了 Mark-Compact算法清理</p><p>其实新生代和老年代就是针对于对象做分区存储，更便于回收等等</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> jvm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 垃圾收集算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>GCROOT</title>
       <link href="/2020/05/05/gcroot/"/>
       <url>/2020/05/05/gcroot/</url>
